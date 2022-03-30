@@ -105,6 +105,7 @@ section {
   justify-content: center;
   align-items: center;
   height: 100%;
+  max-width: 100%;
 }
 
 .countdown ul {
@@ -153,11 +154,13 @@ section {
   font-size: 1.1rem;
   font-family: var(--font-secondary);
   margin-bottom: 2rem;
-  text-align: center;
+
 }
 .bio {
   padding-bottom: 3rem;
+  text-align: left;
 }
+
 
 @media screen and (max-width: 768px) {
   .menu {
