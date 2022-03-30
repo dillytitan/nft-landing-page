@@ -37,6 +37,7 @@ body {
 .container {
   margin: 0 auto;
   padding: 1rem 2rem;
+  max-width: 960px;
 }
 
 /* HEADER */
@@ -49,6 +50,8 @@ header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width:  960px;
+
 }
 
 .menu {
