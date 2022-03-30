@@ -142,6 +142,15 @@ section {
   border-radius: 0 0 4px 4px;
 }
 
+.canvas {
+  width: 900px;
+  height: 200px;
+  display: block;
+  position: relative;
+  background: transparent;
+  margin: 40px auto;
+}
+
 .countdown h1 {
   text-shadow: 2px 2px 0 var(--accent-color);
   font-style: italic;
@@ -177,7 +186,5 @@ section {
   .countdown p {
     font-size: 1rem;
   }
-  .container {
-    max-width: 390px;
-  }
+ 
 }
