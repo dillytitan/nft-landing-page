@@ -44,6 +44,7 @@ body {
 
 header {
   box-shadow: var(--header-shadow);
+  width: 100% !important;
 }
 
 header .container {
@@ -54,6 +55,10 @@ header .container {
 
 }
 
+
+.logo {
+  padding-right: 30px;
+}
 .menu {
   display: flex;
   gap: 2rem;
