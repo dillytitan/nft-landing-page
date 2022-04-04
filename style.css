@@ -8,7 +8,7 @@
   --font-primary: 'Press Start 2P', cursive;
   --font-secondary: 'Press Start 2P', cursive;
   --font-code: 'Roboto', monospace;
-  --bg-color: #000;
+  --bg-color: #83e9e7;
   --font-color: #ffffff;
   --btn-bg-color: #ffffff;
   --accent-color: #000;
@@ -26,7 +26,7 @@ a {
 }
 
 body {
-  background-color: var(--bg-color);
+  background-color: #83e9e7 !important;
   display: flex;
   flex-flow: column;
   height: 100vh;
