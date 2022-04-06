@@ -73,6 +73,9 @@ header .container {
   color: #000;
 }
 
+.mainLogo {
+  padding-right: 18rem
+}
 /* BUTTONS */
 
 .btn {
@@ -203,9 +206,13 @@ section {
     gap: 1rem;
   }
   .wallet-btn {
-    margin-left: 0;
-    padding: 1rem;
+    
+    padding: 15px 15px;
     max-width: 10rem;
+    margin:0 auto;
+    display:block;
+    max-width: 100%;
+
   }
   .countdown h1 {
     font-size: 2rem;
@@ -219,5 +226,9 @@ section {
   .img {
     max-width: 75% !important;
   }
+  .mainLogo {
+    display: none;
+  }
+  
  
 }
