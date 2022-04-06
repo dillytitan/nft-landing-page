@@ -25,6 +25,7 @@ a {
   box-sizing: border-box;
 }
 
+
 body {
   background-color: #83e9e7 !important;
   display: flex;
@@ -57,6 +58,7 @@ header .container {
 }
 .hero {
   padding-top: 25px;
+  max-width: 100%;
 }
 
 
@@ -200,6 +202,9 @@ section {
   }
   .body {
     width: 100vw;
+  }
+  .img {
+    max-width: 100% !important;
   }
  
 }
