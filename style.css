@@ -44,14 +44,14 @@ body {
 
 header {
   box-shadow: var(--header-shadow);
-  max-width: 100% !important;
+
 }
 
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width:  100% !important;
+
 
 }
 
@@ -186,7 +186,7 @@ section {
   .wallet-btn {
     margin-left: 0;
     padding: 1rem;
-    max-width: 15rem;
+    max-width: 10rem;
   }
   .countdown h1 {
     font-size: 2rem;
