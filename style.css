@@ -37,7 +37,7 @@ body {
 .container {
   margin: 0 auto;
   padding: 1rem 2rem;
-  max-width: 960px;
+
 }
 
 /* HEADER */
@@ -194,16 +194,8 @@ section {
   .countdown p {
     font-size: 1rem;
   }
-  header {
-    box-shadow: var(--header-shadow);
-    max-width: 100% !important;
-  }
-  header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width:  100% !important;
-
+  .body {
+    width: 100vw;
   }
  
 }
