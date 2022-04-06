@@ -1,153 +1,15 @@
-//Countdown Timer
-const clockdiv = document.getElementById("countdown");
-const countDownTime = new Date(
-  clockdiv.getAttribute("data-date")
-).getTime();
-
-const countdownfunction = setInterval(function () {
-  const now = new Date().getTime();
-  const diff = countDownTime - now;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-  const minutes = Math.floor(diff % (1000 * 60 * 60) / (1000 * 60));
-  const seconds = Math.floor(diff % (1000 * 60) / 1000);
-
-  if (diff < 0) {
-    clockdiv.style.display = "none";
-    clearInterval(countdownfunction);
-  } else {
-    clockdiv.querySelector(".days").innerHTML = days;
-    clockdiv.querySelector(".hours").innerHTML = hours;
-    clockdiv.querySelector(".minutes").innerHTML = minutes;
-    clockdiv.querySelector(".seconds").innerHTML = seconds;
-  }
-}, 1000);
-
-// countdown timer 2
-var ringer = {
-  countdown_to: "4/14/2022",
-  rings: {
-    'DAYS': {
-      s: 86400000, // mseconds in a day,
-      max: 365
-    },
-    'HOURS': {
-      s: 3600000, // mseconds per hour,
-      max: 24
-    },
-    'MINUTES': {
-      s: 60000, // mseconds per minute
-      max: 60
-    },
-    'SECONDS': {
-      s: 1000,
-      max: 60
-    },
-    'MICROSEC': {
-      s: 10,
-      max: 100
-    }
-   },
-  r_count: 5,
-  r_spacing: 16, // px
-  r_size: 100, // px
-  r_thickness: 3, // px
-  update_interval: 22, // ms
-   
-   
-  init: function(){
-   
-    $r = ringer;
-    $r.cvs = document.createElement('canvas');
-   
-    $r.size = {
-      w: ($r.r_size + $r.r_thickness) * $r.r_count + ($r.r_spacing*($r.r_count-1)),
-      h: ($r.r_size + $r.r_thickness)
-    };
-   
- 
- 
-    $r.cvs.setAttribute('width',$r.size.w);          
-    $r.cvs.setAttribute('height',$r.size.h);
-    $r.ctx = $r.cvs.getContext('2d');
-    $(document.body).append($r.cvs);
-    $r.cvs = $($r.cvs);    
-    $r.ctx.textAlign = 'center';
-    $r.actual_size = $r.r_size + $r.r_thickness;
-    $r.countdown_to_time = new Date($r.countdown_to).getTime();
-    $r.cvs.css({ width: $r.size.w+"px", height: $r.size.h+"px" });
-    $r.go();
-  },
-  ctx: null,
-  go: function(){
-    var idx=0;
-   
-    $r.time = (new Date().getTime()) - $r.countdown_to_time;
-   
-   
-    for(var r_key in $r.rings) $r.unit(idx++,r_key,$r.rings[r_key]);      
-   
-    setTimeout($r.go,$r.update_interval);
-  },
-  unit: function(idx,label,ring) {
-    var x,y, value, ring_secs = ring.s;
-    value = parseFloat($r.time/ring_secs);
-    $r.time-=Math.round(parseInt(value)) * ring_secs;
-    value = Math.abs(value);
-   
-    x = ($r.r_size*.5 + $r.r_thickness*.5);
-    x +=+(idx*($r.r_size+$r.r_spacing+$r.r_thickness));
-    y = $r.r_size*.5;
-    y += $r.r_thickness*.5;
- 
-   
-    // calculate arc end angle
-    var degrees = 360-(value / ring.max) * 360.0;
-    var endAngle = degrees * (Math.PI / 180);
-   
-    $r.ctx.save();
- 
-    $r.ctx.translate(x,y);
-    $r.ctx.clearRect($r.actual_size*-0.5,$r.actual_size*-0.5,$r.actual_size,$r.actual_size);
- 
-    // first circle
-    $r.ctx.strokeStyle = "rgba(200,0,244,0.5)";
-    $r.ctx.beginPath();
-    $r.ctx.arc(0,0,$r.r_size/2,0,20, 1);
-    $r.ctx.lineWidth =$r.r_thickness;
-    $r.ctx.stroke();
-   
-    // second circle
-    $r.ctx.strokeStyle = "rgba(200,0,255,1)";
-    $r.ctx.beginPath();
-    $r.ctx.arc(0,0,$r.r_size/2,0,endAngle, 1);
-    $r.ctx.lineWidth =$r.r_thickness;
-    $r.ctx.stroke();
-   
-    // label
-    $r.ctx.fillStyle = "#ffffff";
-   
-    $r.ctx.font = '12px Helvetica';
-    $r.ctx.fillText(label, 0, 23);
-    $r.ctx.fillText(label, 0, 23);  
-   
-    $r.ctx.font = 'bold 40px Helvetica';
-    $r.ctx.fillText(Math.floor(value), 0, 10);
-   
-    $r.ctx.restore();
-  }
-}
- 
-ringer.init();
-
-
 // METAMASK CONNECTION
+const TIMEOUT = 1000;
+const COLLECTION_NAME = 'Stephen Sanchez NFTs';
+let editions = [];
+let dots = 1;
+
 window.addEventListener('DOMContentLoaded', () => {
   const onboarding = new MetaMaskOnboarding();
   const onboardButton = document.getElementById('connectWallet');
   let accounts;
 
-  const updateButton = () => {
+  const updateButton = async () => {
     if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
       onboardButton.innerText = 'Install MetaMask!';
       onboardButton.onclick = () => {
@@ -159,6 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
       onboardButton.innerText = `✔ ...${accounts[0].slice(-4)}`;
       onboardButton.disabled = true;
       onboarding.stopOnboarding();
+      checkOwner(accounts[0]);
     } else {
       onboardButton.innerText = 'Connect MetaMask!';
       onboardButton.onclick = async () => {
@@ -168,6 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(function(accounts) {
           onboardButton.innerText = `✔ ...${accounts[0].slice(-4)}`;
           onboardButton.disabled = true;
+          checkOwner(accounts[0]);
         });
       };
     }
@@ -181,3 +45,89 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+const checkOwner = async (account) => {
+  if(account) {
+    let isOwner = false;
+    let page = 1
+    
+    const data = await fetchWithRetry(`/.netlify/functions/isowner/?wallet=${account}&page=${page}`);
+
+    isOwner = !isOwner ? data.isOwner : isOwner;
+    updateStatusText(isOwner, true)
+    
+    editions = [...data.editions]
+    let nextPage = data.next_page
+
+    while(nextPage) {
+      page = nextPage
+      const data = await fetchWithRetry(`/.netlify/functions/isowner/?wallet=${account}&page=${page}`);
+
+      isOwner = !isOwner ? data.isOwner : isOwner;
+      updateStatusText(isOwner, true)
+      
+      editions = [...editions, ...data.editions]
+      nextPage = data.next_page
+    }
+
+    updateStatusText(isOwner, false)
+  }
+}
+
+function updateStatusText(isOwner, checking) {
+  const statusText = document.querySelector('.owner-status');
+  if(checking) {
+    if(isOwner) {
+      statusText.innerText = `You do own ${COLLECTION_NAME}!! 😻 Let's see how many${renderDots(dots)}`;
+    } else {
+      statusText.innerText = `Checking to see if you own any ${COLLECTION_NAME} 😻${renderDots(dots)}`;
+    }
+  } else {
+    if(isOwner) {
+      statusText.innerText = `You own ${editions.length} ${COLLECTION_NAME}!! 😻`;
+    } else {
+      statusText.innerText = `You don't own any ${COLLECTION_NAME} 😿`;
+    }
+  }
+  dots = dots === 3 ? 1 : dots + 1;
+}
+
+function renderDots(dots) {
+  let dotsString = '';
+  for (let i = 0; i < dots; i++) {
+    dotsString += '.';
+  }
+  return dotsString;
+}
+
+function timer(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+
+async function fetchWithRetry(url)  {
+  await timer(TIMEOUT);
+  return new Promise((resolve, reject) => {
+    const fetch_retry = (_url) => {
+      return fetch(_url).then(async (res) => {
+        const status = res.status;
+
+        if(status === 200) {
+          return resolve(res.json());
+        }            
+        else {
+          console.error(`ERROR STATUS: ${status}`)
+          console.log('Retrying')
+          await timer(TIMEOUT)
+          fetch_retry(_url)
+        }            
+      })
+      .catch(async (error) => {  
+        console.error(`CATCH ERROR: ${error}`)  
+        console.log('Retrying')    
+        await timer(TIMEOUT)    
+        fetch_retry(_url)
+      }); 
+    }
+    return fetch_retry(url);
+  });
+}
