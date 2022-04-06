@@ -108,6 +108,16 @@ header .container {
   padding: 1.5rem 3rem;
 }
 
+.notice {
+  max-width: 50%;
+}
+
+
+.player {
+  padding-right: 26rem;
+}
+
+
 /* COUNTDOWN SECTION */
 
 section {
