@@ -12,7 +12,7 @@
   --font-color: #ffffff;
   --btn-bg-color: #ffffff;
   --accent-color: #000;
-  --header-shadow: #000 0px 0px 5px;
+  --header-shadow: #000 0px 5px 5px -5px;
 }
 
 a {
@@ -186,7 +186,7 @@ section {
   .wallet-btn {
     margin-left: 0;
     padding: 1rem;
-    max-width: 8rem;
+    max-width: 15rem;
   }
   .countdown h1 {
     font-size: 2rem;
@@ -194,7 +194,16 @@ section {
   .countdown p {
     font-size: 1rem;
   }
- {
-   header 
- }
+  header {
+    box-shadow: var(--header-shadow);
+    max-width: 100% !important;
+  }
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width:  100% !important;
+  
+  }
+ 
 }
