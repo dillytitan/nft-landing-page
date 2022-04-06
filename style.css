@@ -44,14 +44,14 @@ body {
 
 header {
   box-shadow: var(--header-shadow);
-  width: 100% !important;
+  max-width: 100% !important;
 }
 
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width:  960px;
+  max-width:  100% !important;
 
 }
 
@@ -194,5 +194,7 @@ section {
   .countdown p {
     font-size: 1rem;
   }
- 
+ {
+   header 
+ }
 }
