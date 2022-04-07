@@ -63,7 +63,7 @@ header .container {
 
 
 .logo {
-  
+  margin: 1rem;
   justify-content: space-evenly;
 }
 .menu {
