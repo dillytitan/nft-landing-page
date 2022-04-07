@@ -25,6 +25,10 @@ a {
   box-sizing: border-box;
 }
 
+h3 {
+  padding-top 4rem;
+}
+
 
 body {
   background-color: #83e9e7 !important;
@@ -200,13 +204,16 @@ section {
 }
 
 .tiger {
-max-width: 50%;
+max-width: 31%;
 }
 
 .talk {
-  padding-left: 19rem;
+  padding-left: 7rem;
 }
 
+.speak {
+  padding-top: 10rem;
+}
 
 @media screen and (max-width: 768px) {
   .menu {
