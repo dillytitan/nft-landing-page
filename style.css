@@ -114,9 +114,6 @@ header .container {
 }
 
 
-.player {
-  padding-right: 26rem;
-}
 
 
 /* COUNTDOWN SECTION */
@@ -196,6 +193,18 @@ section {
 .bio {
   padding-bottom: 3rem;
   text-align: left;
+}
+/* TIGER TIME */
+.tigerTalk {
+  margin: auto;
+}
+
+.tiger {
+max-width: 50%;
+}
+
+.talk {
+  padding-left: 19rem;
 }
 
 
