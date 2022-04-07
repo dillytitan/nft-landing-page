@@ -222,6 +222,9 @@ max-width: 31%;
   text-align: center;
 
 }
+.footerImage {
+  max-width: 20%;
+}
 
 @media screen and (max-width: 768px) {
   .menu {
@@ -252,6 +255,9 @@ max-width: 31%;
   }
   header {
     box-shadow: none;
+  }
+  .footerImage {
+    max-width: 40%;
   }
 }
 
