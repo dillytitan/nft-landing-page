@@ -45,9 +45,7 @@ body {
 
 /* HEADER */
 
-header {
-  box-shadow: var(--header-shadow);
-}
+
 
 header .container {
   display: row;
