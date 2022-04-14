@@ -121,7 +121,10 @@ header .container {
 }
 
 
-
+.mint-btn {
+  padding: 3rem;
+  max-width: 100%;
+}
 
 /* COUNTDOWN SECTION */
 
@@ -136,6 +139,7 @@ section {
   align-items: center;
   padding-top: 1rem;
   max-width: 100%;
+  display: none;
 }
 
 .countdown ul {
